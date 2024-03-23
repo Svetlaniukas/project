@@ -1,0 +1,79 @@
+[
+    {
+        "label": "db",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "app",
+        "description": "app",
+        "isExtraImport": true,
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Product",
+        "kind": 6,
+        "importPath": "app.models",
+        "description": "app.models",
+        "peekOfCode": "class Product(db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    name = db.Column(db.String(100), nullable=False)\n    description = db.Column(db.Text, nullable=False)\n    price = db.Column(db.Float, nullable=False)\n    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')\n    def __repr__(self):\n        return f\"Product('{self.name}', '{self.price}')\"",
+        "detail": "app.models",
+        "documentation": {}
+    },
+    {
+        "label": "home",
+        "kind": 2,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "def home():\n    return render_template('base.html')\n@app.route(\"/about\")\ndef about():\n    return render_template('detail.html')\n@app.route(\"/contact\")\ndef contact():\n    return render_template('contact.html')\n@app.route(\"/products\")\ndef products():",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "about",
+        "kind": 2,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "def about():\n    return render_template('detail.html')\n@app.route(\"/contact\")\ndef contact():\n    return render_template('contact.html')\n@app.route(\"/products\")\ndef products():\n    return render_template('products.html')",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "contact",
+        "kind": 2,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "def contact():\n    return render_template('contact.html')\n@app.route(\"/products\")\ndef products():\n    return render_template('products.html')",
+        "detail": "app.routes",
+        "documentation": {}
+    },
+    {
+        "label": "products",
+        "kind": 2,
+        "importPath": "app.routes",
+        "description": "app.routes",
+        "peekOfCode": "def products():\n    return render_template('products.html')",
+        "detail": "app.routes",
+        "documentation": {}
+    }
+]
