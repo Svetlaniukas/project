@@ -1,0 +1,18 @@
+
+{% block container %}
+<div class="container mt-4">
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card">
+                <img class="card-img-top" src="{{ url_for('static', filename=product.image) }}" alt="Product Image">
+                <div class="card-body">
+                    <p class="card-text">{{ product.description }}</p>
+                    <a href="/product/{{ loop.index }}" class="btn btn-primary">See More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

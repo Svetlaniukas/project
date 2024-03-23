@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-7">
+                <div class="section-title position-relative pb-3 mb-5">
+                    <h5 class="fw-bold text-primary text-uppercase"></h5>
+                    <h1 class="mb-0">"Crafting Nature's Elegance: Where Function Meets Beauty in Every Build."</h1>
+                </div>
+                <p class="mb-4">"Our company specializes in creating high-quality wooden constructions, including garden sheds and summer houses. We use only the finest materials and modern construction methods to ensure the durability and attractiveness of each project. Our products are perfect for those who value naturalness, functionality, and aesthetics in landscape design."</p>
+                <div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
+                    <a href="tel:+000000" class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                        <i class="fa fa-phone-alt text-white"></i>
+                    </a>
+                    <div class="ps-4">
+                        <h5 class="mb-2">Call to ask any question</h5>
+                        <a href="tel:+353894001955" class="text-primary mb-0" style="text-decoration: none;">+353 0000000</a>
+                    </div>
+                </div>
+                <a href="{{ url_for('contact') }}" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Request A Fee Quote</a>
+
+                <!-- Visit Our Showroom Button -->
+                <a href="https://maps.app.goo.gl/4qbRSsR79bX1qsfp7" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="1.2s">Visit Our Showroom</a>
+            </div>
+            <div class="col-lg-5" style="min-height: 500px;">
+                <div class="position-relative h-100">
+                    <div id="myCarousel" class="carousel slide h-100" data-bs-ride="carousel">
+                        <div class="carousel-inner h-100">
+                            <div class="carousel-item active h-100">
+                                <img src="{{ url_for('static', filename='images/slide1.jpg') }}" class="d-block w-100 h-100 rounded" style="object-fit: cover;">
+                            </div>
+                            <div class="carousel-item h-100">
+                                <img src="{{ url_for('static', filename='images/slide2.jpg') }}" class="d-block w-100 h-100 rounded" style="object-fit: cover;">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+    <h1 class="mb-0 gradient-text">Don't miss out on our exclusive offers for wooden sheds!</h1>
+    <!-- Кнопка для перехода в магазин -->
+    <a href="{{ url_for('products_page') }}"  class="btn btn-primary mt-4">Visit Our Store</a>
+    <!-- Замените 'path-to-your-store' на путь к вашему магазину -->
+</div>
+
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Company Description Section -->
+<div class="container py-5">
+
+    <!-- Company Description Section -->
+    <div class="row mb-5 justify-content-center">
+        <div class="col-lg-8">
+            <h2 class="text-center">About Wooden Sheds</h2>
+            <p>
+                At Wooden Sheds, we specialize in crafting high-quality wooden houses and structures. With our blend of experience and expertise, we don't just build structures; we create timeless wooden art pieces. Our team of skilled craftsmen combines traditional methods with modern technology, ensuring each project is unique and exceptional.
+            </p>
+            <p>
+                Our passion lies in delivering not only durable and sustainable wooden buildings but also in providing an aesthetic appeal that blends seamlessly with nature. We take pride in using eco-friendly materials and processes, making every Wooden Sheds creation a testament to environmental responsibility and exquisite craftsmanship.
+            </p>
+            <p>
+                Whether it's a cozy cabin in the woods, a spacious family home, or a functional shed, we are committed to exceeding your expectations with our meticulous attention to detail and personalized approach to each project.
+            </p>
+        </div>
+    </div>
+
+    <!-- Feedback Request Section -->
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h3>We Value Your Feedback</h3>
+            <p>Have you worked with us? We would love to hear about your experience. Your feedback not only helps us grow but also assists others in making informed decisions. Please leave us a review below.</p>
+            <!-- Link or button to review section or page can be added here -->
+        </div>
+    </div>
+    
+</div> 
+    
+
+<div class="container-fluid py-5">
+    <div class="row px-xl-5">
+        <div class="col-lg-12 pb-5">
+            <!-- carousel -->
+            <div id="productsCarousel" class="carousel slide" data-bs-ride="carousel">
+                
+                
+                <a class="carousel-control-prev" href="#productsCarousel" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#productsCarousel" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+
+                
+                <div class="carousel-inner">
+                    {% for product in products %}
+                    <div class="carousel-item {% if loop.first %}active{% endif %}">
+                        <img class="d-block w-100" src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+
+                        <div class="carousel-description">
+                            <h5>{{ product.name }}</h5>
+                            <p>{{ product.description }}</p>
+                        </div>
+
+                        <form class="review-form" action="{{ url_for('submit_review') }}" method="post">
+                            <input type="hidden" name="product_id" value="{{ product.id }}">
+                            <textarea name="review" placeholder="Leave a comment" required></textarea>
+                            <button type="submit" class="btn btn-primary">Submit Comment</button>
+                        </form>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // This script enhances the user interaction on a website by managing review submissions through multiple forms. Once the page is fully loaded, it attaches event listeners to all forms designated as review forms. When a review form is submitted, the script intercepts the default submission process to prevent page reload. Instead, it collects the form data and sends it to the server using an asynchronous fetch request. The server response is then processed to determine if the submission was successful. Users are immediately informed of the outcome through an alert—either confirming the successful submission of their comment or indicating a failure to submit. In case of any network errors during the submission process, the script catches these errors, logs them to the console, and alerts the user, thereby maintaining a seamless and responsive user experience. This approach significantly improves the website's interactivity, allowing users to submit reviews without interrupting their browsing experience.
+        document.querySelectorAll('.review-form').forEach(form => {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                var formData = new FormData(this);
+                fetch('{{ url_for('submit_review') }}', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        alert('Comment submitted successfully');
+                    } else {
+                        alert('Failed to submit comment');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while submitting the comment');
+                });
+            });
+        });
+    });
+</script>
+{% endblock %}

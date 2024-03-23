@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="product-detail">
+    <h1>{{ product.name }}</h1>
+    <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+    <p>{{ product.description }}</p>
+
+
+    <form id="orderForm" action="{{ url_for('place_order') }}" method="post">
+        <!-- Hidden field for product ID -->
+        <input type="hidden" name="product_id" value="{{ product.id }}">
+
+        <div class="form-group">
+            <label for="sizeSelect">Size</label>
+            <select class="form-select" id="sizeSelect" name="size" onchange="updatePrice()">
+                {% for size in product.options.sizes %}
+                    <option value="{{ size.id }}" data-price="{{ size.additional_price }}">{{ size.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="materialSelect">Material</label>
+            <select class="form-select" id="materialSelect" name="material" onchange="updatePrice()">
+                {% for material in product.options.materials %}
+                    <option value="{{ material.id }}" data-price="{{ material.additional_price }}">{{ material.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="roofSelect">Roof Type</label>
+            <select class="form-select" id="roofSelect" name="roof" onchange="updatePrice()">
+                {% for roof in product.options.roofs %}
+                    <option value="{{ roof.id }}" data-price="{{ roof.additional_price }}">{{ roof.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="colorSelect">Color</label>
+            <select class="form-select" id="colorSelect" name="color" onchange="updatePrice()">
+                {% for color in product.options.colors %}
+                    <option value="{{ color.id }}" data-price="{{ color.additional_price }}">{{ color.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Place Order</button>
+    </form>
+</div>
+ <!-- Calculate and display the total price -->
+ <p id="totalPrice">Price: {{ product.base_price }}</p>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // get a base price from  Jinja2 
+        var basePrice = {{ product.base_price }};
+
+        // Initialize total price on page load
+
+        updatePrice(basePrice);
+
+        // Update price when options change
+
+        document.getElementById('sizeSelect').addEventListener('change', function() { updatePrice(basePrice); });
+        document.getElementById('materialSelect').addEventListener('change', function() { updatePrice(basePrice); });
+        document.getElementById('roofSelect').addEventListener('change', function() { updatePrice(basePrice); });
+        document.getElementById('colorSelect').addEventListener('change', function() { updatePrice(basePrice); });
+    });
+
+    
+</script>
+<!-- Modal window for displaying order information -->
+
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="orderMessage"></p>
+    </div>
+</div>
+<!-- The script is designed for a web page with an order form, providing a seamless and interactive user experience.
+     It's executed when the page fully loads, attaching an event listener to the order submission form.
+      This listener prevents the default form submission, instead gathering the form data and sending it to the server via a POST request.
+       The server's response, expected in JSON format, dictates the subsequent actions:
+        if successful, the script dynamically constructs a detailed order confirmation message,
+         displaying it in a modal window. Conversely, if the process encounters an error or the server response indicates failure, an error message is shown.
+          Additionally, the script manages the modal window's close functionality, allowing users to easily hide it.
+           This approach enhances user interaction by providing real-time feedback without needing to reload the page,
+            leveraging modern web development techniques for a smoother, more responsive user experience. -->
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+    
+            fetch('{{ url_for("place_order") }}', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    var message = "Order Confirmation\n";
+                    message += "--------------------------\n";
+                    message += "Product ID: " + data.order_data.product_id + "\n";
+                    message += "Size: " + data.order_data.size + "\n";
+                    message += "Material: " + data.order_data.material + "\n";
+                    message += "Roof: " + data.order_data.roof + "\n";
+                    message += "Color: " + data.order_data.color + "\n";
+                    message += "--------------------------\n";
+    
+                    document.getElementById('orderMessage').textContent = message;
+                    document.getElementById('orderModal').style.display = 'block';
+                } else {
+                    document.getElementById('orderMessage').textContent = data.message;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    
+        document.querySelector('.close').addEventListener('click', function() {
+            document.getElementById('orderModal').style.display = 'none';
+        });
+    });
+    
+</script>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block contact %}
+    <!-- Contact Start -->
+    <div class="container-fluid pt-5">
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">Contact For Any Queries</span></h2>
+        </div>
+        <div class="row px-xl-5">
+            <div class="col-lg-7 mb-5">
+                <div class="contact-form">
+                    <div id="success"></div>
+                    <form name="sentMessage" id="contactForm" action="{{ url_for('send_email') }}" method="post">
+                        <div class="control-group">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
+                        </div>
+                        <div class="control-group">
+                            <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone" required="required" data-validation-required-message="Please enter your phone number" />
+                        </div>
+                        <div class="control-group">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
+                        </div>
+                        <div class="control-group">
+                            <select class="form-control" name="inquiryType" id="inquiryType" required="required">
+                                <option value="">-- Select A Service --</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="sales">Sales</option>
+                                <option value="support">Support</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <select class="form-control" name="county" id="countySelect" required="required">
+                                <option value="">-- Select A County --</option>
+                                <option value="dublin">Dublin</option>
+                                <option value="cork">Cork</option>
+                                <!-- Add additional counties as needed -->
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <textarea class="form-control" rows="6" name="message" id="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary py-2 px-4" type="submit">Send Message</button>
+                        </div>
+                    </form>
+                    
+                </div>
+                <!-- Оформленный блок для раздела "What happens next" -->
+                <div class="what-happens-next">
+                    <h3 class="what-happens-title">What happens after you submit your request?</h3>
+                    <p class="what-happens-description">
+                        After request being submitted, a member of our team will contact you to confirm and finalise your order. 
+                        Once order confirmed, it usually takes around 2-4 weeks before delivery and assembly day. The exact date is arranged one week before it takes place.
+                    </p>
+                    <p class="what-happens-description">
+                        Delivery and assembly is free of charge for Co.Dublin, Co.Meath and Co.Louth. 
+                        For all other countries, please contact us directly for more information.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-5 mb-5">
+                <h5 class="font-weight-semi-bold mb-3">"ShedsDepo" Solid Timber Frame Structures</h5>
+                <div class="d-flex flex-column mb-3">
+                    <h5 class="font-weight-semi-bold mb-3">Get In Touch</h5>
+                    <p class="mb-2">
+                        <a href="https://maps.app.goo.gl/yc35wH2Ev6WXUNQ18" target="_blank">
+                            <i class="fa fa-map-marker-alt text-primary mr-3"></i>PMGH+5M, Newtownstalaban, Drogheda, Co. Louth
+                        </a>
+                    </p>
+                    <p class="mb-2">
+                        <a href="mailto:info@shedsdepo.ie">
+                            <i class="fa fa-envelope text-primary mr-3"></i>info@shedsdepo.ie
+                        </a>
+                    </p>
+                    <p class="mb-2">
+                        <a href="tel:+0894001955">
+                            <i class="fa fa-phone-alt text-primary mr-3"></i>089 400 1955
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+    </div>
+    <!-- Contact End -->
+
+{% endblock %}

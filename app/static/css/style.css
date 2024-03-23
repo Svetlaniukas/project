@@ -1,0 +1,202 @@
+/* Основные переменные для стилизации */
+:root {
+    --primary-color: #cda521;
+    --secondary-color: #b39529;
+    --background-color: #f0f8ff;
+    --text-color: #1a1f02;
+    --header-color: #312e05;
+    --link-color: #accedd;
+    --link-hover-color: #cda521;
+    --modal-background-color: rgba(0,0,0,0.4);
+    --modal-content-background-color: #fefefe;
+    --footer-background-color: #f0f8ff;
+    --footer-text-color: #494721;
+    --carousel-max-width: %; 
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Styling of main elements */
+
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+.navbar .nav-link {
+    color: var(--primary-color);
+}
+
+.navbar .nav-link:hover {
+    color: var(--secondary-color);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Styles for the footer */
+
+.footer, .container-fluid.bg-secondary {
+    background-color: var(--footer-background-color);
+    color: var(--footer-text-color);
+    padding: 10px 0;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.footer a, .container-fluid.bg-secondary a {
+    color: var(--link-color);
+    transition: color 0.2s ease-in-out;
+}
+
+.footer a:hover, .container-fluid.bg-secondary a:hover {
+    color: var(--link-hover-color);
+}
+
+/* Adaptation for mobile devices */
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+    .btn-primary {
+        padding: 8px 16px;
+    }
+    .footer, .container-fluid.bg-secondary {
+        font-size: 0.7em;
+        padding: 8px 0;
+    }
+    .product-card img {
+        height: 150px; 
+    }
+    .carousel-item img {
+        max-width: 100%; 
+    }
+    .modal-content {
+        width: 90%;
+        margin: 10px auto; 
+    }
+    .modal-dialog {
+        margin: 20px; 
+    }
+}
+
+/* Styles for carousel navigation arrows */
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: black;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+.carousel-control-prev, .carousel-control-next {
+    width: 5%;
+}
+
+/* Styling and positioning of additional elements */
+
+.product-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.product-detail h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.product-detail img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-detail p {
+    font-size: 1rem;
+    color: #555;
+}
+
+#totalPrice {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-top: 20px;
+}
+
+.what-happens-next {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+.what-happens-title {
+    color: #007bff;
+    margin-bottom: 15px;
+    font-size: 1.2rem; /* Добавленный размер шрифта */
+}
+
+.what-happens-description {
+    color: #495057;
+    line-height: 1.6;
+    font-size: 1rem; /* Добавленный размер шрифта */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Adaptation of the review form for mobile devices */
+
+@media (max-width: 768px) {
+    .form-group, .form-select {
+        font-size: 0.8rem;
+    }
+    .product-detail, #totalPrice, .what-happens-title, .what-happens-description {
+        padding: 15px; 
+        font-size: 0.9rem; 
+    }
+}
+
+.carousel-description h5, .carousel-description p {
+    color: #090101; 
+}
+.faq .question-answer {
+    margin-bottom: 15px;
+}
+
+.faq .question {
+    font-weight: bold;
+}
+
+.faq .answer {
+    font-style: italic;
+    margin-top: 5px;
+}
