@@ -12,17 +12,22 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    # Если ваш Jekyll проект зависит от Python, настройте его здесь
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.8'  # Используйте версию Python, поддерживаемую GitHub Actions
+        python-version: '3.x'
 
-    - name: Install Jekyll dependencies
+    - name: Create and activate Python virtual environment
       run: |
-        gem install bundler jekyll
-        bundle install
+        python -m venv venv
+        source venv/bin/activate
+
+    - name: Install Python dependencies (if required)
+      run: |
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Build Jekyll site
       run: |
+        gem install jekyll bundler
+        bundle install
         jekyll build
