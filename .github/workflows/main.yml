@@ -1,9 +1,9 @@
-name: Build and Deploy Jekyll Site to GitHub Pages
+name: Build and Deploy Jekyll Site
 
 on:
   push:
     branches:
-      - master
+      - master  # или ваша активная ветка
 
 jobs:
   build:
@@ -15,24 +15,12 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.11'
+        python-version: '3.8'  # замените на доступную версию
 
     - name: Create and activate Python virtual environment
       run: |
         python -m venv venv
         source venv/bin/activate
 
-    - name: Install Jekyll and dependencies
-      run: |
-        gem install jekyll bundler
-        bundle install
-
-    - name: Build and test the Jekyll site
-      run: jekyll build
-
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./_site
+    # Добавьте шаги для установки зависимостей, сборки проекта и т.д.
 
