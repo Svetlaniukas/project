@@ -1,8 +1,9 @@
-name: Jekyll site CI
+name: Build and Deploy
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - master
 
 jobs:
   build:
@@ -22,18 +23,6 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.x' 
-    - name: Create Python virtual environment
-      run: |
-        python -m venv venv
-        source venv/bin/activate
+        python-version: '3.x'
 
-    - name: Install Jekyll dependencies
-      run: |
-        gem install bundler jekyll
-        bundle install
-
-    - name: Build and test Jekyll site
-      run: |
-        jekyll build
-
+    # Дополнительные шаги для установки зависимостей, тестирования и деплоя
