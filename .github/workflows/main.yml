@@ -1,9 +1,9 @@
-name: Build and Deploy Jekyll site to GitHub Pages
+name: Jekyll site CI
 
 on:
   push:
     branches:
-      - master  # Ассоциированный веткой Git для запуска данного workflow
+      - main  # or the name of your default branch, e.g., 'master'
 
 jobs:
   build:
@@ -11,35 +11,28 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.1' # Указана версия Ruby, используемая в вашем проекте
-    - name: Setup Node.js 20
+    - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '20'
-    - name: Setup Python 3.11
+    - name: Set up Python 3.11
       uses: actions/setup-python@v3
       with:
         python-version: '3.11'
-    - name: Install Jekyll and Bundler
+    - name: Install Jekyll and dependencies
       run: |
         gem install jekyll bundler
-    - name: Install dependencies
-      run: |
         bundle install
-        npm install # Если в вашем проекте используются пакеты npm
+        npm install # Если используются зависимости npm
         python -m pip install --upgrade pip
-        pip install -r requirements.txt # Если у вас есть зависимости Python
-    - name: Build and Test
+        pip install -r requirements.txt # Если используются зависимости Python
+    - name: Build and test Jekyll site
       run: |
-        jekyll build
-        # Добавьте сюда дополнительные команды для тестирования, если это необходимо
+        jekyll build --verbose
     - name: Deploy to GitHub Pages
-      if: github.ref == 'refs/heads/master' # Выполняется только для ветки master
+      if: github.ref == 'refs/heads/main'  # or the name of your default branch
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        deploy_key: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./_site
 
