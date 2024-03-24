@@ -19,7 +19,11 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: '3.11'
-    - name: Install Ruby and Bundler
+    - name: Create and activate a Python virtual environment
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+    - name: Install Jekyll and Bundler
       run: |
         sudo apt-get install -y ruby-full build-essential zlib1g-dev
         gem install jekyll bundler
