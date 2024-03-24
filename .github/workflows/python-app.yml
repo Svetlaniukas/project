@@ -11,11 +11,18 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Set up Node.js 20
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Check available versions of Python
+      run: curl https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
+
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.8'
-
+        python-version: '3.x' 
     - name: Create Python virtual environment
       run: |
         python -m venv venv
