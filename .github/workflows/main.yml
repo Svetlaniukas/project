@@ -11,10 +11,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version: 3.11
 
@@ -28,5 +28,5 @@ jobs:
 
     - name: Deploy to GitHub Pages
       run: |
-        # Используйте путь к Python в скрипте развертывания
         /opt/homebrew/opt/python@3.11/bin/python3.11 deploy_script.py
+
