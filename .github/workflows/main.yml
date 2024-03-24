@@ -3,7 +3,7 @@ name: Build and Deploy Jekyll Site to GitHub Pages
 on:
   push:
     branches: 
-      - master  # Ассоциируйте это с веткой вашего Git репозитория
+      - master  # Замените 'master' на вашу основную ветку, если она называется иначе
 
 jobs:
   build-and-deploy:
@@ -19,17 +19,17 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: '3.11'
-    - name: Create and activate a Python virtual environment
-      run: |
-        python -m venv venv
-        source venv/bin/activate
-    - name: Install Jekyll and Bundler
+    - name: Install Ruby and Bundler
       run: |
         sudo apt-get install -y ruby-full build-essential zlib1g-dev
         gem install jekyll bundler
     - name: Install Jekyll dependencies
       run: |
         bundle install
+    - name: Create and activate a Python virtual environment
+      run: |
+        python -m venv venv
+        source venv/bin/activate
     - name: Build and test the Jekyll site
       run: jekyll build
     - name: Deploy to GitHub Pages
