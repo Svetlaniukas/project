@@ -3,7 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - master  # Замените на вашу ветку
+      - master
 
 jobs:
   build:
@@ -23,7 +23,8 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.x'  # Оставляем '3.x' для использования последней доступной версии Python 3
+        python-version: '3.x'
 
-    # Добавьте дополнительные шаги для установки зависимостей, тестирования и деплоя
+    # Дополнительные шаги для установки зависимостей, тестирования и деплоя
+
 
