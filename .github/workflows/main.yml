@@ -1,9 +1,9 @@
-name: Build and Deploy Jekyll Site
+name: Build and Deploy
 
 on:
   push:
     branches:
-      - master  # или ваша активная ветка
+      - master  # Замените на вашу ветку
 
 jobs:
   build:
@@ -12,15 +12,17 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Set up Node.js 20
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Check available versions of Python
+      run: curl https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
+
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.8'  # замените на доступную версию
+        python-version: '3.x'  # Замените '3.x' на поддерживаемую версию Python
 
-    - name: Create and activate Python virtual environment
-      run: |
-        python -m venv venv
-        source venv/bin/activate
-
-    # Добавьте шаги для установки зависимостей, сборки проекта и т.д.
-
+    # Добавьте дополнительные шаги для установки зависимостей, тестирования и деплоя
