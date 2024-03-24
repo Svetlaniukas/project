@@ -15,7 +15,8 @@ jobs:
     - name: Set up Node.js 20
       uses: actions/setup-node@v3
       with:
-        node-version: '20'
+        node-version: '20.x'  # Уточняем версию Node.js
+
 
     - name: Check available versions of Python
       run: curl https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
