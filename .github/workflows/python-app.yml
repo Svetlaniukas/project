@@ -25,9 +25,3 @@ jobs:
     - name: Install Python dependencies (if required)
       run: |
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-    - name: Build Jekyll site
-      run: |
-        gem install jekyll bundler
-        bundle install
-        jekyll build
