@@ -24,6 +24,7 @@ jobs:
     
     - name: Deploy to GitHub Pages
       run: |
-        /Users/svetlanamelichova/Desktop/wooden-products-website/venv/bin/python deploy_script.py
+         echo "::add-path::/opt/homebrew/opt/python@3.11/bin"
+          echo "::set-env name=PYTHONPATH::/opt/homebrew/opt/python@3.11/bin"
 
 
