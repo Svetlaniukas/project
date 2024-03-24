@@ -23,6 +23,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.x'  # Замените '3.x' на поддерживаемую версию Python
+        python-version: '3.x'  # Оставляем '3.x' для использования последней доступной версии Python 3
 
     # Добавьте дополнительные шаги для установки зависимостей, тестирования и деплоя
+
