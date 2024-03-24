@@ -19,14 +19,14 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: '3.11'
-    - name: Install Jekyll and dependencies
+    - name: Install Ruby and Bundler
       run: |
         sudo apt-get install -y ruby-full build-essential zlib1g-dev
         gem install jekyll bundler
+    - name: Install Jekyll dependencies
+      run: |
         bundle install
-        python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Build and test
+    - name: Build and test the Jekyll site
       run: jekyll build
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
