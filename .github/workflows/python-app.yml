@@ -1,8 +1,9 @@
-name: Python Jekyll site CI
+name: Build and Deploy
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - master
 
 jobs:
   build:
@@ -14,18 +15,9 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.8'  # Выберите нужную версию Python
+        python-version: '3.8'  # Заменим на более конкретную версию Python
 
-    - name: Create and activate Python virtual environment
+    - name: Install dependencies
       run: |
-        python -m venv venv
-        source venv/bin/activate
-
-    - name: Install Jekyll dependencies
-      run: |
-        gem install bundler jekyll
-        bundle install
-
-    - name: Build and test Jekyll site
-      run: |
-        jekyll build
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
